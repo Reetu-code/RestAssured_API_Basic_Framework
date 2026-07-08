@@ -1,0 +1,118 @@
+
+The current version of the framework includes all essential components required for a professional API automation suite.
+1. BaseClient Layer (Reusable HTTP Client)
+A centralized client that handles all HTTP operations:
+•	GET
+•	POST
+•	PUT
+•	DELETE
+•	PATCH
+Features included:
+•	Automatic JSON serialization/deserialization
+•	Standard headers (Content Type, Accept)
+•	Configurable base URI
+•	Clean separation of request execution logic from test logic
+2. POJO Models for Request Bodies
+Created POJO classes to represent JSON payloads:
+•	Clean request body construction
+•	Type safe serialization using Jackson
+•	Easy reuse across multiple test cases
+•	Eliminates hardcoded JSON strings
+3. TestNG Based Test Structure
+A well organized test suite with:
+•	BaseTest for global setup
+•	Separate test classes for each HTTP method
+•	Assertions for status codes, response fields, and business rules
+•	Retry logic for flaky tests using RetryAnalyzer
+•	Parameterized tests using DataProviders
+4. Project Structure Following Best Practices
+Code
+src
+ ├── main
+ │    └── java
+ │         ├── client          → BaseClient (HTTP operations)
+ │         ├── pojo            → Request body models
+ │         ├── listeners       → RetryAnalyzer
+ │         └── utils           → DataProviders
+ │
+ └── test
+      └── java
+           ├── base            → BaseTest
+           └── test            → API test classes
+This structure is clean, scalable, and easy for teams to adopt.
+5. Maven Build + Dependency Management
+The project uses Maven for:
+•	Dependency management
+•	Test execution (mvn test)
+•	Future integration with CI/CD pipelines
+ 6. GitHub Repository Setup
+The repository is fully configured with:
+•	Proper branch setup (main)
+•	Clean commit history
+•	Ready for CI/CD integration
+•	Ready for documentation expansion
+
+Enhancements Planned (Pipeline Roadmap)
+1. JSON Schema Validation
+Add schema validation using:
+•	json-schema-validator
+•	Automated schema checks for all API responses
+Why: Ensures contract testing and backward compatibility.
+ 2. Custom HTML Reporting
+Integrate:
+•	Extent Reports or
+•	Allure Reports
+Features planned:
+•	Step level logging
+•	Request/response capture
+•	Screenshot support for UI extensions
+•	Trend analysis
+3. Environment Based Configuration
+Add support for:
+•	dev
+•	qa
+•	stage
+•	prod
+Using:
+•	config.properties
+•	or YAML based configuration
+Why: Allows seamless switching between environments.
+4. Logging & Request/Response Capture
+Add:
+•	Log4j2 or SLF4J
+•	Request/response logging filters
+•	Error logging for failed tests
+Why: Critical for debugging and audit trails.
+5. Token Based Authentication
+Add support for:
+•	OAuth2
+•	Bearer tokens
+•	API keys
+•	JWT token generation
+Why: Most enterprise APIs require authentication.
+6. Database Validation Layer
+Add JDBC based DB validation:
+•	Query execution
+•	ResultSet → POJO mapping
+•	API vs DB comparison utilities
+7. CI/CD Integration
+Add:
+•	Jenkins pipeline /GitHub Actions pipeline
+Features planned:
+•	Automated test execution
+•	Report publishing
+•	Slack/Teams notifications
+ 8. Test Data Management
+Add:
+•	Excel/CSV driven test data
+•	Apache POI integration
+•	Dynamic payload generation
+ 9. API Contract Testing
+Add:
+•	OpenAPI/Swagger contract validation
+•	Automated diffing between versions
+10. Parallel Test Execution
+Enable TestNG parallel runs:
+•	Parallel classes
+•	Parallel methods
+•	Thread safe client
